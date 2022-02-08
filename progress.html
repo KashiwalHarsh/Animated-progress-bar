@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .father{
+        padding: 20px;
+        width: 900px;
+        display: flex;
+        justify-content: space-around;
+    }
+    .son{
+        border: 2px solid red;
+        padding: 20px;
+        margin: 20px;
+        width: 500px;
+    }
+    .child-skill{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 2% 0%;
+    }
+    progress{
+        /* width: 100%;
+        height: 20px; */
+        opacity: 0;
+    }
+    .child-progress{
+        position: relative;
+        display: inline-block;
+        background: #eee;
+        height: 12px;
+        width: 100%;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    .child-progress::after{
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+    }
+    .html::after{
+        width: 0;
+        border-radius: 10px;
+        background: rgb(99, 62, 233);
+        animation: progress-html .7s ease-in forwards;
+
+    }
+    .css::after {
+        width: 0;
+        border-radius: 10px;
+        background: rgb(255, 51, 129);
+        animation: progress-css .7s ease-in forwards;
+    }
+
+    /* ------------bar--animate---------------- */
+    @keyframes progress-html{
+        to{
+            width: 80%;
+        }
+    }
+    @keyframes progress-css{
+        to{
+            width: 90%;
+        }
+    }
+
+    /* -----------------digit-animation------------ */
+    @property --num{
+        syntax: "<integer>";
+        initial-value: 0;
+        inherits: false;
+    }
+
+    .html-counter::after{
+        counter-reset: num var(--num);
+        content: counter(num) '%';
+        animation: text-html .7s ease-in forwards;
+    }
+    .css-counter::after{
+        counter-reset: num var(--num);
+        content: counter(num) '%';
+        animation: text-css .7s ease-in forwards;
+    }
+    @keyframes text-html{
+        to{
+            --num:80;
+        }
+    }
+    @keyframes text-css{
+        to{
+            --num:90;
+        }
+    }
+
+
+</style>
+<body>
+    <section class="main">
+        <div class="father">
+
+            <div class="son">
+                <div class="child-skill">
+                    <span>HTML</span>
+                    <span class="html-counter"></span>
+                </div>
+                <div class="child-progress html">
+                    <progress value="80" max="100"></progress>
+                </div>
+            </div>
+
+            <div class="son">
+                <div class="child-skill">
+                    <span>CSS</span>
+                    <span class="css-counter"></span>
+                </div>
+                <div class="child-progress css">
+                    <progress value="90" max="100"></progress>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+</body>
+</html>
